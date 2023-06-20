@@ -10,9 +10,9 @@ namespace Domain.Models
     {
         public Guid Id { get; set; }
         public string? Description { get; set; }
-        public double Amount { get; set; }
-        public DateOnly PurchaseDate { get; set; }
+        public double? Amount { get; set; }
+        public DateOnly? PurchaseDate { get; set; }
         public Guid? ExpenceCategoryId { get; set; }
-        public ExpenceCategory ExpenceCategory { get; set; }
+        public ExpenceCategory? ExpenceCategory { get; set; }
     }
 }

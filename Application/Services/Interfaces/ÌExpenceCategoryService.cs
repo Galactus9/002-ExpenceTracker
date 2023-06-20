@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Interfaces
 {
-    internal interface IExpenceCategoryService
+    public interface IExpenceCategoryService
     {
         Task<ExpenceCategoryGetDTO> CreateAsync(ExpenceCategoryCreateDTO expenceCategory);
         Task<ExpenceCategoryGetDTO> GetByIdAsync(Guid id);
         Task<List<ExpenceCategoryGetDTO>> GetWithDetailsAsync(Expression<Func<ExpenceCategory, bool>> filter);
-        Task<ExpenceCategoryGetDTO> SoftDeleteAsync(Guid id);
+        Task<bool> SoftDeleteAsync(Guid id);
         Task<ExpenceCategoryGetDTO> UpdateAsync(Guid id, ExpenceCategoryUpdateDTO expenceCategory);
     }
 }

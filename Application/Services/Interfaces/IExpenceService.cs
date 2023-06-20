@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Interfaces
 {
-    internal interface IExpenceService
+    public interface IExpenceService
     {
         Task<ExpenceGetDTO> CreateAsync(ExpenceCreateDTO expence);
         Task<ExpenceGetDTO> GetByIdAsync(Guid id);

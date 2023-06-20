@@ -13,7 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Application.Services.Implmentaitions
 {
-    internal class ExpenceService : IExpenceService
+    public class ExpenceService : IExpenceService
     {
         private IMapper _mapper;
         private IRepositoryUnitOfWork _repoUOW;
