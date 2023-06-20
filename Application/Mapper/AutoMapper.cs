@@ -1,5 +1,5 @@
-﻿using Application.DTOs.ExpenceCategoryDTO;
-using Application.DTOs.ExpenceDTO;
+﻿using Application.DTOs.ExpenseCategoryDTO;
+using Application.DTOs.ExpenseDTO;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using Domain.Models;
@@ -16,15 +16,15 @@ namespace Application.Mapper
         {
             var mapperConfig = new MapperConfiguration(mc =>
             {
-                // Map Expence
-                mc.CreateMap<ExpenceGetDTO, Expence>().ReverseMap();
-                mc.CreateMap<ExpenceCreateDTO, Expence>().ReverseMap();
-                mc.CreateMap<ExpenceUpdateDTO, Expence>().ReverseMap();
+                // Map Expense
+                mc.CreateMap<ExpenseGetDTO, Expense>().ReverseMap();
+                mc.CreateMap<ExpenseCreateDTO, Expense>().ReverseMap();
+                mc.CreateMap<ExpenseUpdateDTO, Expense>().ReverseMap();
                 
-                // Map ExpenceCategory
-                mc.CreateMap<ExpenceCategoryGetDTO, ExpenceCategory>().ReverseMap();
-                mc.CreateMap<ExpenceCategoryCreateDTO, ExpenceCategory>().ReverseMap();
-                mc.CreateMap<ExpenceCategoryUpdateDTO, ExpenceCategory>().ReverseMap();
+                // Map ExpenseCategory
+                mc.CreateMap<ExpenseCategoryGetDTO, ExpenseCategory>().ReverseMap();
+                mc.CreateMap<ExpenseCategoryCreateDTO, ExpenseCategory>().ReverseMap();
+                mc.CreateMap<ExpenseCategoryUpdateDTO, ExpenseCategory>().ReverseMap();
             });
 
             IMapper Automapper = mapperConfig.CreateMapper();

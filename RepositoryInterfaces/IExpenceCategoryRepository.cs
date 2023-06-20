@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RepositoryInterfaces
 {
-    public interface IExpenceCategoryRepository : IGenericRepository<ExpenceCategory>
+    public interface IExpenseCategoryRepository : IGenericRepository<ExpenseCategory>
     {
     }
 }

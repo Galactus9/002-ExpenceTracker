@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace RepositoryInterfaces
 {
-    public interface IExpenceRepository : IGenericRepository<Expence>
+    public interface IExpenseRepository : IGenericRepository<Expense>
     {
-        public Task<List<Expence>> GetWithDetailsAsync();
-        public Task<List<Expence>> GetWithDetailsAsync(Expression<Func<Expence, bool>> filter);
+        public Task<List<Expense>> GetWithDetailsAsync();
+        public Task<List<Expense>> GetWithDetailsAsync(Expression<Func<Expense, bool>> filter);
 
     }
 }

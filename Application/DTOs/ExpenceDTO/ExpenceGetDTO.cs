@@ -1,4 +1,4 @@
-﻿using Application.DTOs.ExpenceCategoryDTO;
+﻿using Application.DTOs.ExpenseCategoryDTO;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs.ExpenceDTO
+namespace Application.DTOs.ExpenseDTO
 {
-    public class ExpenceGetDTO
+    public class ExpenseGetDTO
     {
         public Guid Id { get; set; }
         public string? Description { get; set; }
         public double Amount { get; set; }
         public DateOnly PurchaseDate { get; set; }
-        public ExpenceCategoryGetDTO ExpenceCategory { get; set; }
+        public ExpenseCategoryGetDTO ExpenseCategory { get; set; }
     }
 }

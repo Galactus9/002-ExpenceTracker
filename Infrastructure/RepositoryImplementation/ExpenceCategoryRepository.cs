@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.RepositoryImplementation
 {
-    internal class ExpenceCategoryRepository : GenericRepository<ExpenceCategory>, IExpenceCategoryRepository
+    internal class ExpenseCategoryRepository : GenericRepository<ExpenseCategory>, IExpenseCategoryRepository
     {
         private readonly MyDbContext _dbContext;
-        public ExpenceCategoryRepository(MyDbContext dbContext) : base(dbContext)
+        public ExpenseCategoryRepository(MyDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }

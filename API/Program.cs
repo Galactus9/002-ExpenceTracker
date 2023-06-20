@@ -26,6 +26,14 @@ namespace API
 
             var app = builder.Build();
 
+            //Seed the database
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<MyDbContext>();
+                SeedDB.Seed(context).Wait();
+            }
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

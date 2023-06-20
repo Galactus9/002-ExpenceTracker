@@ -13,17 +13,17 @@ namespace dbConnection
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
         }
-        public virtual DbSet<Expence> Expences { get; set; }
-        public virtual DbSet<ExpenceCategory> ExpenceCategories { get; set; }
+        public virtual DbSet<Expense> Expenses { get; set; }
+        public virtual DbSet<ExpenseCategory> ExpenseCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Expence>()
-                 .Property(expence => expence.Id)
+            modelBuilder.Entity<Expense>()
+                 .Property(Expense => Expense.Id)
                  .HasDefaultValueSql("NEWID()");
 
-            modelBuilder.Entity<ExpenceCategory>()
-                 .Property(expence => expence.Id)
+            modelBuilder.Entity<ExpenseCategory>()
+                 .Property(Expense => Expense.Id)
                  .HasDefaultValueSql("NEWID()");
         }
     }

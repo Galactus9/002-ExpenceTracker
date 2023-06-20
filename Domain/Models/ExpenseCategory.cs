@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class ExpenceCategory : AbstractModel
+    public class ExpenseCategory : AbstractModel
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

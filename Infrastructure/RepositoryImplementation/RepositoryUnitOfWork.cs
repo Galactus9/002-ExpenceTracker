@@ -17,13 +17,13 @@ namespace Infrastructure.RepositoryImplementation
         {
             _db = db;
             //_eventBus = eventBus;
-            Expence = new ExpenceRepository(db);
-            ExpenceCategory = new ExpenceCategoryRepository(db);
+            Expense = new ExpenseRepository(db);
+            ExpenseCategory = new ExpenseCategoryRepository(db);
         }
 
-        public IExpenceRepository Expence {get; private set;}
+        public IExpenseRepository Expense {get; private set;}
 
-        public IExpenceCategoryRepository ExpenceCategory { get; private set;}
+        public IExpenseCategoryRepository ExpenseCategory { get; private set;}
 
     public async Task<bool> Save()
         {

@@ -11,30 +11,30 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.RepositoryImplementation
 {
-    public class ExpenceRepository : GenericRepository<Expence>, IExpenceRepository
+    public class ExpenseRepository : GenericRepository<Expense>, IExpenseRepository
     {
         private readonly MyDbContext _dbContext;
-        public ExpenceRepository(MyDbContext dbContext) : base(dbContext)
+        public ExpenseRepository(MyDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<List<Expence>> GetWithDetailsAsync() 
+        public async Task<List<Expense>> GetWithDetailsAsync() 
         {
             try
             {
-                return  await _dbContext.Set<Expence>().Include(x => x.ExpenceCategory).ToListAsync();
+                return  await _dbContext.Set<Expense>().Include(x => x.ExpenseCategory).ToListAsync();
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<List<Expence>> GetWithDetailsAsync(Expression<Func<Expence, bool>> filter) 
+        public async Task<List<Expense>> GetWithDetailsAsync(Expression<Func<Expense, bool>> filter) 
         {
             try
             {
-                return  await _dbContext.Set<Expence>().Where(filter).Include(x => x.ExpenceCategory).ToListAsync();
+                return  await _dbContext.Set<Expense>().Where(filter).Include(x => x.ExpenseCategory).ToListAsync();
             }
             catch (Exception ex)
             {

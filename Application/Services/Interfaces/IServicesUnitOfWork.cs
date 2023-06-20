@@ -10,8 +10,8 @@ namespace Application.Services
 {
     public interface IServicesUnitOfWork
     {
-        public IExpenceService Expence { get;}
-        public IExpenceCategoryService ExpenceCategory { get;}
+        public IExpenseService Expense { get;}
+        public IExpenseCategoryService ExpenseCategory { get;}
 
     }
 }

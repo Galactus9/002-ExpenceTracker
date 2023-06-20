@@ -1,4 +1,4 @@
-﻿using Application.DTOs.ExpenceDTO;
+﻿using Application.DTOs.ExpenseDTO;
 using Application.Services.Interfaces;
 using AutoMapper;
 using Domain.Models;
@@ -13,88 +13,92 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Application.Services.Implmentaitions
 {
-    public class ExpenceService : IExpenceService
+    public class ExpenseService : IExpenseService
     {
         private IMapper _mapper;
         private IRepositoryUnitOfWork _repoUOW;
-        public async Task<ExpenceGetDTO> CreateAsync(ExpenceCreateDTO expence)
+
+        public ExpenseService(IMapper mapper, IRepositoryUnitOfWork repoUOW)
+        {
+            _mapper = mapper;
+            _repoUOW = repoUOW;
+        }
+
+        public async Task<ExpenseGetDTO> CreateAsync(ExpenseCreateDTO Expense)
         {
             try
             {
-                Expence mappedExpence = _mapper.Map<Expence>(expence);
-                mappedExpence.CreatedOn = DateTime.Now;
-                mappedExpence.IsActive = true;
-                mappedExpence.IsDeleted = false;
-                Expence result = await _repoUOW.Expence.InsertAsync(mappedExpence);
+                Expense mappedExpense = _mapper.Map<Expense>(Expense);
+                mappedExpense.CreatedOn = DateTime.Now;
+                mappedExpense.IsActive = true;
+                mappedExpense.IsDeleted = false;
+                Expense result = await _repoUOW.Expense.InsertAsync(mappedExpense);
                 await _repoUOW.Save();
-                return _mapper.Map<ExpenceGetDTO>(result);
+                return _mapper.Map<ExpenseGetDTO>(result);
             }
             catch (Exception ex)
             {
-                throw new Exception(message: $"An error occurred while creating the Expence: {ex.Message}");
+                throw new Exception(message: $"An error occurred while creating the Expense: {ex.Message}");
             }
         }
-
-        public async Task<ExpenceGetDTO> GetByIdAsync(Guid id)
+        public async Task<ExpenseGetDTO> GetByIdAsync(Guid id)
         {
             try
             {
-                Expence result = await _repoUOW.Expence.GetByIdAsync(id);
+                Expense result = await _repoUOW.Expense.GetByIdAsync(id);
                 // Here we have to add || IsApproved == false when we add roles
                 if (result is null)
                 {
                     throw new Exception("No active application found!");
                 }
-                return _mapper.Map<ExpenceGetDTO>(result);
+                return _mapper.Map<ExpenseGetDTO>(result);
             }
             catch (Exception ex)
             {
-                throw new Exception(message: $"An error occurred while retrieving the Expence: {ex.Message}");
+                throw new Exception(message: $"An error occurred while retrieving the Expense: {ex.Message}");
             }
         }
-
-        public async Task<List<ExpenceGetDTO>> GetAsync(Expression<Func<Expence, bool>> filter)
+        public async Task<List<ExpenseGetDTO>> GetAsync(Expression<Func<Expense, bool>> filter)
         {
             try
             {
-                List<Expence> result = await _repoUOW.Expence.GetAllAsync(filter);
+                List<Expense> result = await _repoUOW.Expense.GetAllAsync(filter);
 
                 if (result is null || result.Count is 0)
                 {
                     throw new Exception(message: "No active application found!");
                 }
 
-                return _mapper.Map<List<ExpenceGetDTO>>(result);
+                return _mapper.Map<List<ExpenseGetDTO>>(result);
             }
             catch (Exception ex)
             {
                 throw new Exception(message: $"No active application found: {ex.Message}");
             }
         }
-        public async Task<List<ExpenceGetDTO>> GetWithDetailsAsync(Expression<Func<Expence, bool>> filter)
+        public async Task<List<ExpenseGetDTO>> GetWithDetailsAsync(Expression<Func<Expense, bool>> filter)
         {
             try
             {
-                List<Expence> result = await _repoUOW.Expence.GetWithDetailsAsync(filter);
+                List<Expense> result = await _repoUOW.Expense.GetWithDetailsAsync(filter);
 
                 if (result is null || result.Count is 0)
                 {
                     throw new Exception(message: "No active application found!");
                 }
 
-                return _mapper.Map<List<ExpenceGetDTO>>(result);
+                return _mapper.Map<List<ExpenseGetDTO>>(result);
             }
             catch (Exception ex)
             {
                 throw new Exception(message: $"No active application found: {ex.Message}");
             }
         }
-
         public async Task<bool> SoftDeleteAsync(Guid id)
         {
             try
             {
-                Expence result = await _repoUOW.Expence.GetByIdAsync(id);
+                Expense result = await _repoUOW.Expense.GetByIdAsync(id);
                 // Here we have to add || IsApproved == false when we add roles
                 if (result is null)
                 {
@@ -109,30 +113,29 @@ namespace Application.Services.Implmentaitions
             }
             catch (Exception ex)
             {
-                throw new Exception(message: $"An error occurred while retrieving the Expence: {ex.Message}");
+                throw new Exception(message: $"An error occurred while retrieving the Expense: {ex.Message}");
             }
         }
-
-        public async Task<ExpenceGetDTO> UpdateAsync(Guid id, ExpenceUpdateDTO expence)
+        public async Task<ExpenseGetDTO> UpdateAsync(Guid id, ExpenseUpdateDTO Expense)
         {
             try
             {
-                var expenceToBeUpdated = await _repoUOW.Expence.GetByIdAsync(id);
+                var ExpenseToBeUpdated = await _repoUOW.Expense.GetByIdAsync(id);
 
-                if (expenceToBeUpdated == null)
+                if (ExpenseToBeUpdated == null)
                 {
                     // Application with the specified ID was not found
                     throw new Exception($"Application with ID '{id}' not found.");
                 }
 
-                _mapper.Map(expence, expenceToBeUpdated);
-                expenceToBeUpdated.UpdatedOn = DateTime.UtcNow;
-                //expenceToBeUpdated.UpdatedBy = 
+                _mapper.Map(Expense, ExpenseToBeUpdated);
+                ExpenseToBeUpdated.UpdatedOn = DateTime.UtcNow;
+                //ExpenseToBeUpdated.UpdatedBy = 
 
-                Expence updatedExpence = _repoUOW.Expence.Update(expenceToBeUpdated);
+                Expense updatedExpense = _repoUOW.Expense.Update(ExpenseToBeUpdated);
                 await _repoUOW.Save();
 
-                return _mapper.Map<ExpenceGetDTO>(updatedExpence);  
+                return _mapper.Map<ExpenseGetDTO>(updatedExpense);  
             }
 
             catch (Exception ex)

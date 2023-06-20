@@ -1,5 +1,7 @@
 ﻿using Application.Services.Implmentaitions;
 using Application.Services.Interfaces;
+using AutoMapper;
+using RepositoryInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,16 @@ namespace Application.Services
 {
     public class ServicesUnitOfWork : IServicesUnitOfWork
     {
-        public ServicesUnitOfWork()
+        private IMapper _mapper;
+        private IRepositoryUnitOfWork _unitOfWork;
+        public ServicesUnitOfWork(IMapper mapper, IRepositoryUnitOfWork unitOfWork)
         {
-            Expence = new ExpenceService();
-            ExpenceCategory = new ExpenceCategoryService();
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
+            Expense = new ExpenseService(mapper, unitOfWork);
+            ExpenseCategory = new ExpenseCategoryService();
         }
-        public IExpenceService Expence { get; private set; }
-        public IExpenceCategoryService ExpenceCategory { get; private set; }
+        public IExpenseService Expense { get; private set; }
+        public IExpenseCategoryService ExpenseCategory { get; private set; }
     }
 }

@@ -8,8 +8,8 @@ namespace RepositoryInterfaces
 {
     public interface IRepositoryUnitOfWork
     {
-        public IExpenceRepository Expence { get; }
-        public IExpenceCategoryRepository ExpenceCategory { get; }
+        public IExpenseRepository Expense { get; }
+        public IExpenseCategoryRepository ExpenseCategory { get; }
         public Task<bool> Save();
     }
 }

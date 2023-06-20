@@ -1,5 +1,5 @@
-﻿using Application.DTOs.ExpenceCategoryDTO;
-using Application.DTOs.ExpenceDTO;
+﻿using Application.DTOs.ExpenseCategoryDTO;
+using Application.DTOs.ExpenseDTO;
 using Application.Services.Interfaces;
 using AutoMapper;
 using Domain.Models;
@@ -13,58 +13,58 @@ using System.Threading.Tasks;
 
 namespace Application.Services.Implmentaitions
 {
-    public class ExpenceCategoryService : IExpenceCategoryService
+    public class ExpenseCategoryService : IExpenseCategoryService
     {
         private IMapper _mapper;
         private IRepositoryUnitOfWork _repoUOW;
-        public async Task<ExpenceCategoryGetDTO> CreateAsync(ExpenceCategoryCreateDTO expenceCategory)
+        public async Task<ExpenseCategoryGetDTO> CreateAsync(ExpenseCategoryCreateDTO ExpenseCategory)
         {
             try
             {
-                ExpenceCategory mappedExpenceCategory = _mapper.Map<ExpenceCategory>(expenceCategory);
-                mappedExpenceCategory.CreatedOn = DateTime.Now;
-                mappedExpenceCategory.IsActive = true;
-                mappedExpenceCategory.IsDeleted = false;
-                ExpenceCategory result = await _repoUOW.ExpenceCategory.InsertAsync(mappedExpenceCategory);
+                ExpenseCategory mappedExpenseCategory = _mapper.Map<ExpenseCategory>(ExpenseCategory);
+                mappedExpenseCategory.CreatedOn = DateTime.Now;
+                mappedExpenseCategory.IsActive = true;
+                mappedExpenseCategory.IsDeleted = false;
+                ExpenseCategory result = await _repoUOW.ExpenseCategory.InsertAsync(mappedExpenseCategory);
                 await _repoUOW.Save();
-                return _mapper.Map<ExpenceCategoryGetDTO>(result);
+                return _mapper.Map<ExpenseCategoryGetDTO>(result);
             }
             catch (Exception ex)
             {
-                throw new Exception(message: $"An error occurred while creating the ExpenceCategory: {ex.Message}");
+                throw new Exception(message: $"An error occurred while creating the ExpenseCategory: {ex.Message}");
             }
         }
 
-        public async Task<ExpenceCategoryGetDTO> GetByIdAsync(Guid id)
+        public async Task<ExpenseCategoryGetDTO> GetByIdAsync(Guid id)
         {
             try
             {
-                ExpenceCategory result = await _repoUOW.ExpenceCategory.GetByIdAsync(id);
+                ExpenseCategory result = await _repoUOW.ExpenseCategory.GetByIdAsync(id);
                 // Here we have to add || IsApproved == false when we add roles
                 if (result is null)
                 {
                     throw new Exception("No active application found!");
                 }
-                return _mapper.Map<ExpenceCategoryGetDTO>(result);
+                return _mapper.Map<ExpenseCategoryGetDTO>(result);
             }
             catch (Exception ex)
             {
-                throw new Exception(message: $"An error occurred while retrieving the Expence: {ex.Message}");
+                throw new Exception(message: $"An error occurred while retrieving the Expense: {ex.Message}");
             }
         }
 
-        public async Task<List<ExpenceCategoryGetDTO>> GetAsync(Expression<Func<ExpenceCategory, bool>> filter)
+        public async Task<List<ExpenseCategoryGetDTO>> GetAsync(Expression<Func<ExpenseCategory, bool>> filter)
         {
             try
             {
-                List<ExpenceCategory> result = await _repoUOW.ExpenceCategory.GetAllAsync(filter);
+                List<ExpenseCategory> result = await _repoUOW.ExpenseCategory.GetAllAsync(filter);
 
                 if (result is null || result.Count is 0)
                 {
                     throw new Exception(message: "No active application found!");
                 }
 
-                return _mapper.Map<List<ExpenceCategoryGetDTO>>(result);
+                return _mapper.Map<List<ExpenseCategoryGetDTO>>(result);
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace Application.Services.Implmentaitions
         {
             try
             {
-                ExpenceCategory result = await _repoUOW.ExpenceCategory.GetByIdAsync(id);
+                ExpenseCategory result = await _repoUOW.ExpenseCategory.GetByIdAsync(id);
                 // Here we have to add || IsApproved == false when we add roles
                 if (result is null)
                 {
@@ -91,30 +91,30 @@ namespace Application.Services.Implmentaitions
             }
             catch (Exception ex)
             {
-                throw new Exception(message: $"An error occurred while retrieving the Expence: {ex.Message}");
+                throw new Exception(message: $"An error occurred while retrieving the Expense: {ex.Message}");
             }
         }
 
-        public async Task<ExpenceCategoryGetDTO> UpdateAsync(Guid id, ExpenceCategoryUpdateDTO expenceCategory)
+        public async Task<ExpenseCategoryGetDTO> UpdateAsync(Guid id, ExpenseCategoryUpdateDTO ExpenseCategory)
         {
             try
             {
-                ExpenceCategory expenceCategoryToBeUpdated = await _repoUOW.ExpenceCategory.GetByIdAsync(id);
+                ExpenseCategory ExpenseCategoryToBeUpdated = await _repoUOW.ExpenseCategory.GetByIdAsync(id);
 
-                if (expenceCategoryToBeUpdated == null)
+                if (ExpenseCategoryToBeUpdated == null)
                 {
                     // Application with the specified ID was not found
                     throw new Exception($"Application with ID '{id}' not found.");
                 }
 
-                _mapper.Map(expenceCategory, expenceCategoryToBeUpdated);
-                expenceCategoryToBeUpdated.UpdatedOn = DateTime.UtcNow;
-                //expenceToBeUpdated.UpdatedBy = 
+                _mapper.Map(ExpenseCategory, ExpenseCategoryToBeUpdated);
+                ExpenseCategoryToBeUpdated.UpdatedOn = DateTime.UtcNow;
+                //ExpenseToBeUpdated.UpdatedBy = 
 
-                ExpenceCategory updatedExpenceCategory = _repoUOW.ExpenceCategory.Update(expenceCategoryToBeUpdated);
+                ExpenseCategory updatedExpenseCategory = _repoUOW.ExpenseCategory.Update(ExpenseCategoryToBeUpdated);
                 await _repoUOW.Save();
 
-                return _mapper.Map<ExpenceCategoryGetDTO>(updatedExpenceCategory);
+                return _mapper.Map<ExpenseCategoryGetDTO>(updatedExpenseCategory);
             }
 
             catch (Exception ex)

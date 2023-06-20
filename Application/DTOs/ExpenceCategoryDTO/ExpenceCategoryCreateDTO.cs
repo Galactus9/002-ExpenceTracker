@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs.ExpenceCategoryDTO
+namespace Application.DTOs.ExpenseCategoryDTO
 {
-    public class ExpenceCategoryCreateDTO
+    public class ExpenseCategoryCreateDTO
     {
         public string Title { get; set; }
         public string? Description { get; set; }
