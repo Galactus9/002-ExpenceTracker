@@ -14,7 +14,7 @@ namespace Application.Services.Interfaces
     {
         Task<ExpenceCategoryGetDTO> CreateAsync(ExpenceCategoryCreateDTO expenceCategory);
         Task<ExpenceCategoryGetDTO> GetByIdAsync(Guid id);
-        Task<List<ExpenceCategoryGetDTO>> GetWithDetailsAsync(Expression<Func<ExpenceCategory, bool>> filter);
+        Task<List<ExpenceCategoryGetDTO>> GetAsync(Expression<Func<ExpenceCategory, bool>> filter);
         Task<bool> SoftDeleteAsync(Guid id);
         Task<ExpenceCategoryGetDTO> UpdateAsync(Guid id, ExpenceCategoryUpdateDTO expenceCategory);
     }

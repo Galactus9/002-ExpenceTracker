@@ -53,7 +53,7 @@ namespace Application.Services.Implmentaitions
             }
         }
 
-        public async Task<List<ExpenceCategoryGetDTO>> GetWithDetailsAsync(Expression<Func<ExpenceCategory, bool>> filter)
+        public async Task<List<ExpenceCategoryGetDTO>> GetAsync(Expression<Func<ExpenceCategory, bool>> filter)
         {
             try
             {

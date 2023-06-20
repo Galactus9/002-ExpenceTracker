@@ -53,11 +53,29 @@ namespace Application.Services.Implmentaitions
             }
         }
 
-        public async Task<List<ExpenceGetDTO>> GetWithDetailsAsync(Expression<Func<Expence, bool>> filter)
+        public async Task<List<ExpenceGetDTO>> GetAsync(Expression<Func<Expence, bool>> filter)
         {
             try
             {
                 List<Expence> result = await _repoUOW.Expence.GetAllAsync(filter);
+
+                if (result is null || result.Count is 0)
+                {
+                    throw new Exception(message: "No active application found!");
+                }
+
+                return _mapper.Map<List<ExpenceGetDTO>>(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(message: $"No active application found: {ex.Message}");
+            }
+        }
+        public async Task<List<ExpenceGetDTO>> GetWithDetailsAsync(Expression<Func<Expence, bool>> filter)
+        {
+            try
+            {
+                List<Expence> result = await _repoUOW.Expence.GetWithDetailsAsync(filter);
 
                 if (result is null || result.Count is 0)
                 {

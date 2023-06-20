@@ -13,6 +13,7 @@ namespace Application.Services.Interfaces
     {
         Task<ExpenceGetDTO> CreateAsync(ExpenceCreateDTO expence);
         Task<ExpenceGetDTO> GetByIdAsync(Guid id);
+        Task<List<ExpenceGetDTO>> GetAsync(Expression<Func<Expence, bool>> filter);
         Task<List<ExpenceGetDTO>> GetWithDetailsAsync(Expression<Func<Expence, bool>> filter);
         Task<ExpenceGetDTO> UpdateAsync(Guid id, ExpenceUpdateDTO expence);
         Task<bool> SoftDeleteAsync(Guid id);
