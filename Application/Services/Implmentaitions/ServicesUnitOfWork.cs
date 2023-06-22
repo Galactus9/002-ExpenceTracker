@@ -19,7 +19,7 @@ namespace Application.Services
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             Expense = new ExpenseService(mapper, unitOfWork);
-            ExpenseCategory = new ExpenseCategoryService();
+            ExpenseCategory = new ExpenseCategoryService(mapper, unitOfWork);
         }
         public IExpenseService Expense { get; private set; }
         public IExpenseCategoryService ExpenseCategory { get; private set; }
