@@ -34,7 +34,7 @@ namespace Application.Services.Implmentaitions
                 mappedExpense.IsDeleted = false;
                 Expense result = await _repoUOW.Expense.InsertAsync(mappedExpense);
                 await _repoUOW.Save();
-                return _mapper.Map<ExpenseGetDTO>(result);
+                return _mapper.Map<ExpenseGetDTO>(mappedExpense);
             }
             catch (Exception ex)
             {

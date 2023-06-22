@@ -20,11 +20,12 @@ namespace Application.Mapper
                 mc.CreateMap<ExpenseGetDTO, Expense>().ReverseMap();
                 mc.CreateMap<ExpenseCreateDTO, Expense>().ReverseMap();
                 mc.CreateMap<ExpenseUpdateDTO, Expense>().ReverseMap();
-                
+
                 // Map ExpenseCategory
                 mc.CreateMap<ExpenseCategoryGetDTO, ExpenseCategory>().ReverseMap();
                 mc.CreateMap<ExpenseCategoryCreateDTO, ExpenseCategory>().ReverseMap();
                 mc.CreateMap<ExpenseCategoryUpdateDTO, ExpenseCategory>().ReverseMap();
+
             });
 
             IMapper Automapper = mapperConfig.CreateMapper();
