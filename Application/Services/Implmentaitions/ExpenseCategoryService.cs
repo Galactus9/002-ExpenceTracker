@@ -17,6 +17,12 @@ namespace Application.Services.Implmentaitions
     {
         private IMapper _mapper;
         private IRepositoryUnitOfWork _repoUOW;
+
+        public ExpenseCategoryService(IMapper mapper, IRepositoryUnitOfWork repoUOW)
+        {
+            _mapper = mapper;
+            _repoUOW = repoUOW;
+        }
         public async Task<ExpenseCategoryGetDTO> CreateAsync(ExpenseCategoryCreateDTO ExpenseCategory)
         {
             try

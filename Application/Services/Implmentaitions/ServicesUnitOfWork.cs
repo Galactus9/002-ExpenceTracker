@@ -12,14 +12,14 @@ namespace Application.Services
 {
     public class ServicesUnitOfWork : IServicesUnitOfWork
     {
-        private IMapper _mapper;
-        private IRepositoryUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly IRepositoryUnitOfWork _unitOfWork;
         public ServicesUnitOfWork(IMapper mapper, IRepositoryUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-            Expense = new ExpenseService(mapper, unitOfWork);
-            ExpenseCategory = new ExpenseCategoryService();
+            Expense = new ExpenseService(_mapper, _unitOfWork);
+            ExpenseCategory = new ExpenseCategoryService(_mapper, _unitOfWork);
         }
         public IExpenseService Expense { get; private set; }
         public IExpenseCategoryService ExpenseCategory { get; private set; }
