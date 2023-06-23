@@ -1,1 +1,1 @@
-
+<div class="tenor-gif-embed" data-postid="8905999" data-share-method="host" data-aspect-ratio="1.5" data-width="100%"><a href="https://tenor.com/view/cl07-gif-8905999">Cl07 GIF</a>from <a href="https://tenor.com/search/cl07-gifs">Cl07 GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
