@@ -25,8 +25,7 @@ const ExpenseCategory = ref('');
     try {
         console.log(payload)
         const response = await axios.post('https://localhost:7235/api/Expense',payload);
-        alert(`Skill: ${response.data.name} was successfully created`)
-        router.push('/Expense'); // thanks Vicks
+        router.push('/Expense');
         console.log(response.data)
 
     } catch (error) {

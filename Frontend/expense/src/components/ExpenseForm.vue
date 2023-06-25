@@ -30,8 +30,10 @@ const url = 'https://localhost:7235/api/ExpenseCategory/GetAll';
 </script>
 
 <template>
+
+    
     <div class="container">
-        <div class="card text-center">
+        <div class="card">
             <div class="card-header">
                 Expense Form
             </div>

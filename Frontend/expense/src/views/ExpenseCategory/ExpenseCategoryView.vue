@@ -25,7 +25,7 @@ const expenseCategories = ref([]);
             <div class="card-header">
                 <h2 style="text-align: center;"> List Of Expense Categories</h2>
                 <p style="text-align: center;">
-                    <RouterLink class="btn btn-warning" to="/Expense/new">Insert Expense Category</RouterLink>
+                    <RouterLink class="btn btn-warning" to="/ExpenseCategory/new">Insert Expense Category</RouterLink>
                 </p>
             </div>
             <div class="card-body">
@@ -56,10 +56,3 @@ const expenseCategories = ref([]);
     </div>
 </template>
 
-<style scoped>
-.card
-{
-    width: 700%
-}
-
-</style>
