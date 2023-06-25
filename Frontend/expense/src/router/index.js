@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('../views/Expense/ExpenseCreate.vue')
     },
     {
+      path:'/Expense/Update/:id',
+      name:'Expense',
+      component: () => import('../views/Expense/ExpenseUpdate.vue')
+    },
+    {
       path:'/ExpenseCategory',
       name:'ExpenseCategoryView',
       component: () => import('../views/ExpenseCategory/ExpenseCategoryView.vue')
@@ -29,7 +34,11 @@ const router = createRouter({
       name:'ExpenseCategoryCreate',
       component: () => import('../views/ExpenseCategory/ExpenseCategoryCreate.vue')
     },
-    
+    {
+      path:'/ExpenseCategory/Update/:id',
+      name:'ExpenseCategoryUpdate',
+      component: () => import('../views/ExpenseCategory/ExpenseCategoryUpdate.vue')
+    },
   ]
 })
 

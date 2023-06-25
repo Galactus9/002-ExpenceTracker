@@ -9,8 +9,8 @@ namespace Application.DTOs.ExpenseDTO
     public class ExpenseUpdateDTO
     {
         public string? Description { get; set; }
-        public double Amount { get; set; }
-        public DateTime PurchaseDate { get; set; }
+        public double? Amount { get; set; }
+        public DateTime? PurchaseDate { get; set; }
         public Guid? ExpenseCategoryId { get; set; }
     }
 }

@@ -46,7 +46,11 @@ const expenseCategories = ref([]);
                                 {{ category.description }}
                             </td>
                             <td>
-
+                                <RouterLink class="btn btn-success" :to="`/ExpenseCategory/Update/${category.id}`">Update</RouterLink>
+                                &nbsp;
+                                <button type="button" class="btn btn-danger"  @click="openModalDelete(category)">Delete</button>
+                                &nbsp;
+                                <button type="button" class="btn btn-secondary" @click="openModalSkills(category)">Details</button>
                             </td>
                         </tr>
                     </tbody>

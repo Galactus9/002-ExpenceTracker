@@ -63,14 +63,14 @@ namespace API.Controllers
             return Ok(addedEmployee);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("[action]/{id}")]
         public async Task<ActionResult<ExpenseGetDTO>> Delete(Guid id) // Integration Test ok!
         {
 
             return Ok(await _unitOfWorkServices.Expense.SoftDeleteAsync(id));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("[action]/{id}")]
         public async Task<ActionResult<ExpenseUpdateDTO>> Update(Guid id, [FromBody] ExpenseUpdateDTO employee)
         {
             if (ModelState.IsValid)

@@ -62,6 +62,7 @@ namespace dbConnection
                             IsApproved = true,
                             IsDeleted = false,
                             CreatedOn = DateTime.Now,
+                            PurchaseDate = DateTime.Now,
                         };
                         db.Set<Expense>().Add(exspense);
                         db.SaveChanges();
