@@ -2,30 +2,28 @@
 import axios from 'axios';
 import { RouterLink } from 'vue-router';
 import { onMounted, ref } from 'vue';
-import ExpenseForm from '@/components/ExpenseForm.vue'
+import ExpenseCategoryForm from '@/components/ExpenseCategoryForm.vue'
 import { routerKey, useRouter } from 'vue-router';
 
 
 const router = useRouter();
+const Title = ref();
 const Description = ref('');
-const Amount = ref();
-const PurchaseDate = ref();
-const ExpenseCategory = ref('');
+const IsActive = ref();
 
     const handleCreate = async(event) => {
     event.preventDefault();
     const payload = {
+        title:Title.value,      
         description:Description.value,
-        amount:Amount.value,      
-        purchaseDate:PurchaseDate.value,
-        expenseCategoryId:ExpenseCategory.value,
+        isActive:IsActive.value,
  
     }
 
     try {
         console.log(payload)
-        const response = await axios.post('https://localhost:7235/api/Expense',payload);
-        router.push('/Expense');
+        const response = await axios.post('https://localhost:7235/api/ExpenseCategory',payload);
+        router.push('/ExpenseCategory');
         console.log(response.data)
 
     } catch (error) {
@@ -35,13 +33,13 @@ const ExpenseCategory = ref('');
 </script>
 <template>
     <div>
-        <ExpenseForm       
+        <ExpenseCategoryForm       
+        v-model:title="Title"
         v-model:description="Description"
-        v-model:amount="Amount"
-        v-model:purchaseDate="PurchaseDate"
-        v-model:expenseCategoryId="ExpenseCategory"
+        v-model:isActive="IsActive"
         :handleSubmit="handleCreate"
         />
     </div>
 
 </template>
+
