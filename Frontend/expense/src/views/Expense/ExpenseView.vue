@@ -36,6 +36,7 @@ const expenses = ref([]);
                             <th>Amount</th>
                             <th>Purchase Date</th>
                             <th>Expence Category</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody v-if="expenses.length > 0">
@@ -51,6 +52,13 @@ const expenses = ref([]);
                             </td>
                             <td>
                                 {{ expense.expenseCategory.title }}
+                            </td>
+                            <td>
+                                <RouterLink class="btn btn-success" :to="`/Expense/Update/${expense.id}`">Update</RouterLink>
+                                &nbsp;
+                                <button type="button" class="btn btn-danger"  @click="openModalDelete(expense)">Delete</button>
+                                &nbsp;
+                                <button type="button" class="btn btn-secondary" @click="openModalSkills(expense)">Details</button>
                             </td>
                         </tr>
                     </tbody>

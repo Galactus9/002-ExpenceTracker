@@ -1,14 +1,15 @@
 <script setup>
 import axios from 'axios';
 import { ref, onMounted, defineProps, defineEmits, watch } from 'vue';
+import { stringifyQuery } from 'vue-router';
 
 const selectedCategory = ref('');
 const allCategories = ref([]);
 const url = 'https://localhost:7235/api/ExpenseCategory/GetAll';
     const props = defineProps({
         description: String,
-        amount: String,
-        purchaseDate: Date,
+        amount: Number,
+        purchaseDate: String,
         expenseCategoryId: String,
         handleSubmit: Function,
         handleCancel: Function
@@ -24,7 +25,7 @@ const url = 'https://localhost:7235/api/ExpenseCategory/GetAll';
     }
   });
 
-  watch(() => props.expenseCategory, (newValue) => {
+  watch(() => props.expenseCategoryId, (newValue) => {
     selectedCategory.value = newValue;
   });
 </script>
@@ -45,21 +46,22 @@ const url = 'https://localhost:7235/api/ExpenseCategory/GetAll';
                     </div>
                     <div class="mb-3">
                         <span>Amount</span>
-                        <input :value="amount" class="form-control" @input="$emit('update:amount', $event.target.value)" placeholder="Enter Expense Amount"/>
+                        <input type="Number" :value="amount" class="form-control" @input="$emit('update:amount', $event.target.value)" placeholder="Enter Expense Amount"/>
                     </div>
                     <div class="mb-3">
                         <span>Date of purchase</span>
-                        <input class="form-control" type="date" :value="purchaseDate" @input="$emit('update:purchaseDate', $event.target.value)" placeholder="Enter purchase date "/>
+                        <input class="form-control" type="Date" :value="purchaseDate" @input="$emit('update:purchaseDate', $event.target.value)" placeholder="Enter purchase date "/>
                     </div>
                     <div class="mb-3">
                         <span>Expense Category</span>
-                        <select for="expenseCategoryId" class="form-select custom-select" id="expenseCategories" v-model="selectedCategory" @change="$emit('update:expenseCategoryId', selectedCategory)">
+                        <select for="expenseCategoryId" class="form-select custom-select" id="expenseCategories" v-model="selectedCategory" @change="$emit('update:expenseCategoryId', $event.target.value)">
                             <option disabled value="">Select Expense Category</option>
                             <option v-for="category in allCategories" :key="category.id" :value="category.id">
                                 {{ category.title }}
                             </option>
                         </select>
                     </div>
+
                     <div class="mb-3">
                         <button class="btn btn-primary" type="submit">Submit</button>&nbsp;
                         <RouterLink class="btn btn-info" to="/expense">Back</RouterLink>&nbsp;
