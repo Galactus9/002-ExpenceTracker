@@ -11,7 +11,7 @@ const fields = ref([]);
 const modalHead = ref('Category Details')
 const modalHeadDelete = ref('Confirm Delete');
 let details = ref('');
-const deleteExpense = ref('')
+const deleteExpense = ref()
 
 
 const openModalExpense = (expense) => {
@@ -38,7 +38,6 @@ const openModalConfirmDeleteExpense = (expense) => {
     details = false;
     isModalOpen.value = true;
     deleteExpense.value = expense.id;
-    console.log(deleteExpense.value);
 }
 
 const expenses = ref([]);

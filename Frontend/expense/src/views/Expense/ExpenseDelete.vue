@@ -3,7 +3,7 @@
                   <p>Delete Expense with the id:</p>
                   <p> {{ props.Expense }} </p>
               <div style="text-align: center;">
-                  <button class="btn btn-daner" @click="deleteExpense">Delete</button>&nbsp;
+                  <button class="btn btn-dagner" @click="deleteExpense">Delete</button>&nbsp;
               </div>
       </div>
   
@@ -27,7 +27,7 @@
       try {
         
           await axios.delete(`https://localhost:7235/api/Expense/Delete/${props.Expense}`).then(response => (console.log(response)));
-          router.push('/loading').then(() => {
+          router.push('/').then(() => {
                   router.push('/Expense');
           });
       }

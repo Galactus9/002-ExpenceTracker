@@ -5,7 +5,7 @@
           <div class="vue-modal-inner">
             <transition name="fade">
               <div class="vue-modal-content">
-                <div class="modal-header">
+                <div class="modal-header" col-mb-2>
                   <h2 class="modal-title">{{ModalHeader}}</h2>
                 </div>
                 <div class="modal-body">
@@ -63,7 +63,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      width:100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.4);
       z-index: 1;
