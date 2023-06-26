@@ -1,25 +1,76 @@
 <script setup>
-import axios from 'axios';
+import { ref, onMounted, computed } from 'vue';
 import { RouterLink } from 'vue-router';
-import { onMounted, ref } from 'vue';
+import axios from 'axios';
+import Modal from '@/components/Modal.vue';
+import ExpenseDelete from '@/views/Expense/ExpenseDelete.vue';
 
+const isModalOpen = ref(false);
+const toggleTheModal = computed(() => isModalOpen.value);
+const fields = ref([]);
+const modalHead = ref('Category Details')
+const modalHeadDelete = ref('Confirm Delete');
+let details = ref('');
+const deleteExpense = ref('')
+
+
+const openModalExpense = (expense) => {
+console.log(expense.id);
+isModalOpen.value = true;
+details = true;
+fields.value = [
+{ id: 'id', label: 'ID', value: expense.id },
+{ id: 'description', label: 'Description', value: expense.description },
+{ id: 'amount', label: 'Amount', value: expense.amount },
+{ id: 'purchaseDate', label: 'Purchase Date', value: expense.purchaseDate },
+{ id: 'expenceCategory', label: 'Expence Category', value: expense.expenseCategory.title },
+{ id: 'isActive', label: 'Is Active', value: expense.isActive },
+];
+console.log(fields.value)
+}
+
+
+const closeModal = () => {
+  isModalOpen.value = false;
+};
+
+const openModalConfirmDeleteExpense = (expense) => {
+    details = false;
+    isModalOpen.value = true;
+    deleteExpense.value = expense.id;
+    console.log(deleteExpense.value);
+}
 
 const expenses = ref([]);
-        
-        const url = 'https://localhost:7235/api/Expense/GetAllWithDetails';
         onMounted(async() => {
             try{
-                const response = await axios.get(url)
-                console.log(response.data)
+                const response = await axios.get('https://localhost:7235/api/Expense/GetAllWithDetails')
                 expenses.value = response.data;
-                console.log(expenses.value.length)
             }
             catch(error){console.log(error)}
         });
 </script>
 
 <template>
-    <div></div>
+
+
+    <!-- modal -->
+    <div v-if="details">
+      <Modal :isModalOpen="toggleTheModal" @close="closeModal()" :ModalHeader="modalHead">
+        <div v-for="field in fields" :key="field.id">
+          <span class="label">{{ field.label }}</span><br />
+          <span > {{ field.value }}</span><br />
+        </div>
+      </Modal>
+    </div>
+    <div v-else>
+    <Modal :isModalOpen="toggleTheModal" @close="closeModal()" :ModalHeader="modalHeadDelete">
+        <ExpenseDelete v-bind:Expense="deleteExpense">
+        </ExpenseDelete>
+    </Modal>
+    </div>
+
+
     <div class="container" >
         <div class="card">
             <div class="card-header">
@@ -56,9 +107,9 @@ const expenses = ref([]);
                             <td>
                                 <RouterLink class="btn btn-success" :to="`/Expense/Update/${expense.id}`">Update</RouterLink>
                                 &nbsp;
-                                <button type="button" class="btn btn-danger"  @click="openModalDelete(expense)">Delete</button>
+                                <button type="button" class="btn btn-danger"  @click="openModalConfirmDeleteExpense(expense)">Delete</button>
                                 &nbsp;
-                                <button type="button" class="btn btn-secondary" @click="openModalSkills(expense)">Details</button>
+                                <button type="button" class="btn btn-secondary" @click="openModalExpense(expense)">Details</button>
                             </td>
                         </tr>
                     </tbody>

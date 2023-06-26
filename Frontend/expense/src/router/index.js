@@ -39,6 +39,11 @@ const router = createRouter({
       name:'ExpenseCategoryUpdate',
       component: () => import('../views/ExpenseCategory/ExpenseCategoryUpdate.vue')
     },
+    {
+      path:'/ExpenseCategory/Delete/:id',
+      name:'ExpenseCategoryDelete',
+      component: () => import('../views/ExpenseCategory/ExpenseCategoryDelete.vue')
+    },
   ]
 })
 

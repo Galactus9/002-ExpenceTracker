@@ -92,7 +92,7 @@ namespace Application.Services.Implmentaitions
                 result.IsDeleted = true;
                 result.DeletedOn = DateTime.Now;
                 //result.DeletedBy =
-
+                await _repoUOW.Save();
                 return true;
             }
             catch (Exception ex)
