@@ -1,4 +1,5 @@
-﻿using Application.DTOs.ExpenseCategoryDTO;
+﻿using Application.DTOs.ChartModels;
+using Application.DTOs.ExpenseCategoryDTO;
 using Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,12 +22,7 @@ namespace API.Controllers
         [Route("[action]")]
         public async Task<ActionResult<List<ExpenseCategoryGetDTO>>> GetAll()
         {
-            List<ExpenseCategoryGetDTO> result = await _unitOfWorkServices.ExpenseCategory
-                .GetAsync(x => x.IsActive == true & x.IsDeleted == false);
-            if (result.Count == 0)
-            {
-                return NoContent();
-            }
+            List<ChartModel> result = await _unitOfWorkServices.Chart.GetChartData();
             return Ok(result);
         }
     }

@@ -20,8 +20,11 @@ namespace Application.Services
             _unitOfWork = unitOfWork;
             Expense = new ExpenseService(_mapper, _unitOfWork);
             ExpenseCategory = new ExpenseCategoryService(_mapper, _unitOfWork);
+            Chart = new ChartService(_unitOfWork);
         }
         public IExpenseService Expense { get; private set; }
         public IExpenseCategoryService ExpenseCategory { get; private set; }
+
+        public IChartService Chart { get; private set; }
     }
 }
