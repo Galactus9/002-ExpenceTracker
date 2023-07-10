@@ -39,6 +39,20 @@
               </li>
             </ul>
           </div>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav ms-1 mb-2 mb-lg-0"> <!-- Use 'ms-auto' to align to the right -->
+                <li class="nav-item dropdown active">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Charts
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu">
+                    <li><RouterLink class="dropdown-item" to="/Charts/Pie">Pie</RouterLink></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><RouterLink class="dropdown-item" to="/Charts/Bars">Bars</RouterLink></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
         </div>
       </nav>
     </div>

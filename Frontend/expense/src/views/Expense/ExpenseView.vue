@@ -57,8 +57,8 @@ const expenses = ref([]);
     <div v-if="details">
       <Modal :isModalOpen="toggleTheModal" @close="closeModal()" :ModalHeader="modalHead">
         <div v-for="field in fields" :key="field.id">
-          <span class="label">{{ field.label }}</span><br />
-          <span > {{ field.value }}</span><br />
+            <span class="label">{{ field.label }}</span><br />
+            <span > {{ field.value }}</span><br />
         </div>
       </Modal>
     </div>

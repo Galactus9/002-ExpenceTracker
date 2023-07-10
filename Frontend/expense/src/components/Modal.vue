@@ -24,7 +24,7 @@
   </template>
   
   <script setup>
-  import { ref, watchEffect, defineEmits, getCurrentInstance  } from 'vue';
+  import { ref, watchEffect, getCurrentInstance  } from 'vue';
   
   const props = defineProps({
     isModalOpen: {

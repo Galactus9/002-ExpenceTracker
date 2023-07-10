@@ -11,7 +11,6 @@
   
   <script setup>
   import axios from 'axios';
-  import { useRoute } from 'vue-router';
   import { useRouter } from 'vue-router';
   
 //   const expenseCategoryId = useRoute().params.id;
@@ -25,9 +24,8 @@
   const deleteExpenseCategory = async () => {
       console.log(props.ExpenseCategory)
       try {
-  
           await axios.delete(`https://localhost:7235/api/ExpenseCategory/${props.ExpenseCategory}`).then(response => (console.log(response)));
-          router.push('/loading').then(() => {
+          router.push('/').then(() => {
                   router.push('/ExpenseCategory');
           });
       }
