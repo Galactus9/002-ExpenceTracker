@@ -12,6 +12,7 @@ namespace Application.Services
     {
         public IExpenseService Expense { get;}
         public IExpenseCategoryService ExpenseCategory { get;}
+        public IChartService Chart { get;}
 
     }
 }

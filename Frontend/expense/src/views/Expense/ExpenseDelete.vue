@@ -11,7 +11,6 @@
   
   <script setup>
   import axios from 'axios';
-  import { useRoute } from 'vue-router';
   import { useRouter } from 'vue-router';
   
 //   const expenseCategoryId = useRoute().params.id;
@@ -25,7 +24,6 @@
   const deleteExpense = async () => {
       console.log(props.Expense)
       try {
-        
           await axios.delete(`https://localhost:7235/api/Expense/Delete/${props.Expense}`).then(response => (console.log(response)));
           router.push('/').then(() => {
                   router.push('/Expense');
